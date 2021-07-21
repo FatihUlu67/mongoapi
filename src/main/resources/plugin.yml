@@ -1,0 +1,6 @@
+name: MongoAPI
+version: 1.0
+description: MongoAPI for Bukkit developers
+authors: [FatihUlu, Vecho]
+api-version: 1.16
+main: xyz.vecho.MongoAPI.Plugin
