@@ -33,24 +33,18 @@ public class MongoAPI {
 	
 	public void createCollectionIfNotExists(String collectionName) {
 		if (database == null || !isConnected()) return;
-		List<String> names = new ArrayList<>();
-		database.listCollectionNames().into(names);
-		if (names.contains(collectionName)) return;
+		if (collectionsAsList().contains(collectionName)) return;
 		database.createCollection(collectionName);
 	}
 	
 	public List<String> collectionsAsList() {
 		if (database == null || !isConnected()) return null;
-		List<String> names = new ArrayList<>();
-		database.listCollectionNames().into(names);
-		return names;
+		return database.listCollectionNames().into(new ArrayList<String>());
 	}
 	
 	public void dropCollectionIfExists(String collectionName) {
 		if (database == null || !isConnected()) return;
-		List<String> names = new ArrayList<>();
-		database.listCollectionNames().into(names);
-		if (!names.contains(collectionName)) return;
+		if (!collectionsAsList().contains(collectionName)) return;
 		database.getCollection(collectionName).drop();
 	}
 	
